@@ -1,4 +1,8 @@
-def call(String jiraUrl, String projectKey, String emailId, String token) {
+def call(Map params) {
+    String jiraUrl = params.jiraUrl
+    String projectKey = params.projectKey
+    String emailId = params.emailId
+    String token = params.token
   def body = """
   {
       "fields": {
