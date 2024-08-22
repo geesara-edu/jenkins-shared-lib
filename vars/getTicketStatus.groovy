@@ -3,9 +3,9 @@ def call(Map params) {
     String projectKey = params.projectKey
     String emailId = params.emailId
     String token = params.token
-    String jira_issue_id = params.JIRA_ISSUE_ID
+    String jira_issue_id = params.jira_issue_id
 
-  def statusResponse = sh(script: "curl -X GET -u ${env.emailId}:${env.token} -H 'Content-Type: application/json' ${env.jiraUrl}/${env.jira_issue_id}", returnStdout: true)
+  //def statusResponse = sh(script: "curl -X GET -u ${env.emailId}:${env.token} -H 'Content-Type: application/json' ${env.jiraUrl}/${env.jira_issue_id}", returnStdout: true)
   
   //echo "Jira API Response: ${response}"
 
