@@ -21,7 +21,7 @@ def call(Map params) {
   def statusResponse = sh(script: "curl -X GET -u ${env.EMAIL_ID}:${env.TOKEN} -H 'Content-Type: application/json' ${env.jiraUrl}/${env.JIRA_ISSUE_ID}", returnStdout: true)
     // Capture response in status.json
 
-    echo "Jira API Response: ${statusResponse}"
+    // echo "Jira API Response: ${statusResponse}"
     def statusJson = new groovy.json.JsonSlurper().parseText(statusResponse)
     approvalStatus = statusJson.fields.status.name
 
