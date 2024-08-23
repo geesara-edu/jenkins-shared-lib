@@ -16,12 +16,12 @@ def call(Map params) {
 
   echo "Checking ticket status"
 
-  while (approvalStatus != "Done" && maxAttempts > 0) {
+  while (approvalStatus != "Done" && maxAttempts < 10) {
   echo "Gettins ticket status of ${env.JIRA_ISSUE_ID}"
   def statusResponse = sh(script: "curl -X GET -u ${env.EMAIL_ID}:${env.TOKEN} -H 'Content-Type: application/json' ${env.jiraUrl}/${env.JIRA_ISSUE_ID}", returnStdout: true)
     // Capture response in status.json
 
-    // echo "Jira API Response: ${statusResponse}"
+    //echo "Jira API Response: ${statusResponse}"
     def statusJson = new groovy.json.JsonSlurper().parseText(statusResponse)
     approvalStatus = statusJson.fields.status.name
 
@@ -31,8 +31,12 @@ def call(Map params) {
         break
     }
                         
-
     }
+    sh"""
+    sleep ${waitInterval}
+    ${maxAttempts} ++
+    """
+
 
     if (approvalStatus == "Done") {
         echo "Ticket approved!"
