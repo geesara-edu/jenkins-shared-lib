@@ -32,8 +32,9 @@ def call(Map params) {
     }
 
     maxAttempts++  // Increment maxAttempts within the loop
-   // sleep(waitInterval * 10)  // Wait for the specified interval
-    
+    sh"""
+    sleep ${waitInterval}  // Wait for the specified interval
+    """
                         
     }
 
