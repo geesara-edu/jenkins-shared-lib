@@ -31,8 +31,7 @@ def call(Map params) {
         break
     }
     maxAttempts++  // Increment maxAttempts within the loop
-
-        sleep(waitInterval * 1000)  // Wait for the specified interval
+    sleep(waitInterval)  // Wait for the specified interval
                         
     }
     
