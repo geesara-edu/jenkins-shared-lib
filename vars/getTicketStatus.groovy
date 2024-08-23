@@ -30,13 +30,12 @@ def call(Map params) {
     if (approvalStatus == "Done") {
         break
     }
+
     maxAttempts++  // Increment maxAttempts within the loop
-    sleep(waitInterval)  // Wait for the specified interval
+    sleep(waitInterval * 10)  // Wait for the specified interval
+    
                         
     }
-    
-    
-
 
     if (approvalStatus == "Done") {
         echo "Ticket approved!"
