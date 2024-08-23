@@ -10,7 +10,7 @@ def call(Map params) {
   //echo "Jira API Response: ${response}"
 
   def approvalStatus = "Not Approved"
-  def maxAttempts = 10
+  def maxAttempts = 0
   def waitInterval = 10
                     
 
@@ -30,12 +30,13 @@ def call(Map params) {
     if (approvalStatus == "Done") {
         break
     }
+    maxAttempts++  // Increment maxAttempts within the loop
+
+        sleep(waitInterval * 1000)  // Wait for the specified interval
                         
     }
-    sh"""
-    sleep ${waitInterval}
-    ${maxAttempts} ++
-    """
+    
+    
 
 
     if (approvalStatus == "Done") {
