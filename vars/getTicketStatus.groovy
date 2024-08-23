@@ -16,7 +16,7 @@ def call(Map params) {
 
   echo "Checking ticket status"
 
-  while (approvalStatus != "Done" && maxAttempts < 10) {
+  while (approvalStatus != "Done" && maxAttempts < 30) {
   echo "Gettins ticket status of ${env.JIRA_ISSUE_ID}"
   def statusResponse = sh(script: "curl -X GET -u ${env.EMAIL_ID}:${env.TOKEN} -H 'Content-Type: application/json' ${env.jiraUrl}/${env.JIRA_ISSUE_ID}", returnStdout: true)
     // Capture response in status.json
@@ -32,9 +32,9 @@ def call(Map params) {
     }
 
     maxAttempts++  // Increment maxAttempts within the loop
-    sh"""
-    sleep ${waitInterval}  
-    """
+    //sh"""
+    //sleep ${waitInterval}  
+    //"""
                         
     }
 
